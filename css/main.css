@@ -285,6 +285,14 @@
       color: #cbd5f5;
       line-height: 1.6;
       box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.18);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .snippet code {
+      display: block;
     }
 
     .section {
@@ -450,7 +458,7 @@
     }
 
     .quote::before {
-      content: "â€œ";
+      content: "Z";
       position: absolute;
       top: -18px;
       left: 22px;

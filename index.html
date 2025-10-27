@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZeroLock | Seguridad moderna para servidores</title>
   <meta name="color-scheme" content="dark" />
-  <link rel="icon" type="image/svg+xml" href="assets/zerolock-favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/assets/zerolock-favicon.svg" />
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#">
-        <img src="assets/zerolock-logo.svg" alt="Zerolock" />
+        <img src="/assets/zerolock-logo.svg" alt="Zerolock" />
       </a>
       <nav class="nav-links" aria-label="Principal">
         <a href="servicios">Servicios</a>
@@ -35,7 +35,7 @@
           <h1>Seguridad de servidores lista para contener cualquier incidente.</h1>
           <p>ZeroLock integra controles de base s&oacute;lida, telemetr&iacute;a en tiempo real y flujos automatizados para blindar tu infraestructura sin agregar fricci&oacute;n operativa.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#servicios">Explorar la plataforma</a>
+            <a class="btn btn-primary" href="servicios">Explorar la plataforma</a>
             <button class="btn" type="button" data-modal-open="roadmap-modal">Ver roadmap</button>
             <span class="hint">&#9733; Cumplimiento continuo sin hojas de c&aacute;lculo.</span>
           </div>
@@ -59,12 +59,12 @@
           <article class="hero-card" aria-label="Panel de eventos correlacionados">
             <h3>Detecci&oacute;n de amenaza priorizada</h3>
             <p>Analizamos cada se&ntilde;al de auditor&iacute;a y elevamos lo relevante, antes de que el atacante pivotee.</p>
-            <pre class="snippet"><code># correlaci&oacute;n ZeroLock
-alert "ssh-brute-force" {
-  source      = logs.auth
-  threshold   = 5 eventos / 1m
-  auto_action = aislar_host("srv-12")
-}</code></pre>
+            <pre class="snippet"><code># Correlaci&oacute;n ZeroLock
+                alert "ssh-brute-force" {
+                  source      = logs.auth
+                  threshold   = 5 eventos / 1m
+                  auto_action = aislar_host("srv-12")
+                }</code></pre>
           </article>
         </div>
       </div>
@@ -151,15 +151,15 @@ alert "ssh-brute-force" {
         </div>
         <div class="testimonials">
           <article class="quote">
-            <p>â€œPasamos de detectar intrusiones a posteriori a neutralizarlas mientras ocurren. ZeroLock se paga solo con la primera madrugada sin alertas falsas.â€</p>
+            <p>Pasamos de detectar intrusiones a posteriori a neutralizarlas mientras ocurren. ZeroLock se paga solo con la primera madrugada sin alertas falsas.</p>
             <footer>Ana R., CISO en fintech LATAM</footer>
           </article>
           <article class="quote">
-            <p>â€œSu enfoque de policies declarativas nos permiti&oacute; estabilizar despliegues multi-cloud y simplificar auditor&iacute;as externas en semanas.â€</p>
+            <p>Su enfoque de policies declarativas nos permiti&oacute; estabilizar despliegues multi-cloud y simplificar auditor&iacute;as externas en semanas.</p>
             <footer>Luis P., Director de Infraestructura</footer>
           </article>
           <article class="quote">
-            <p>â€œEl playbook de respuesta nos ahorr&oacute; horas durante un incidente de ransomware. La coordinaci&oacute;n fue autom&aacute;tica.â€</p>
+            <p>El playbook de respuesta nos ahorr&oacute; horas durante un incidente de ransomware. La coordinaci&oacute;n fue autom&aacute;tica.</p>
             <footer>Julieta S., Responsable de DevSecOps</footer>
           </article>
         </div>
@@ -264,9 +264,9 @@ alert "ssh-brute-force" {
     <div class="container">
       <span>&copy; <span id="year"></span> ZeroLock. Seguridad dise&ntilde;ada para equipos que no se detienen.</span>
       <nav class="footer-nav" aria-label="Enlaces secundarios">
-        <a href="#servicios">Servicios</a>
-        <a href="#capacidades">Capacidades</a>
-        <a href="#clientes">Clientes</a>
+        <a href="servicios">Servicios</a>
+        <a href="capacidades">Capacidades</a>
+        <a href="clientes">Clientes</a>
         <a href="mailto:hello@zerolock.io">hello@zerolock.io</a>
       </nav>
     </div>
