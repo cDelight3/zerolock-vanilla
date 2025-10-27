@@ -1,72 +1,83 @@
-const statusList = document.getElementById("statusList");
-const sensorCount = document.getElementById("sensorCount");
-const ruleForm = document.getElementById("ruleForm");
-const ruleFeedback = document.getElementById("ruleFeedback");
-const yearEl = document.getElementById("year");
+﻿const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
 
-const incidents = [
-  { label: "Acceso laboratorio biométrico", severity: "alto" },
-  { label: "Puerta dock 03", severity: "medio" },
-  { label: "Cámara patio central", severity: "bajo" },
-  { label: "Rack principal", severity: "medio" },
-];
+    (function () {
+      const body = document.body;
+      const triggers = document.querySelectorAll("[data-modal-open]");
+      const modals = document.querySelectorAll(".modal");
+      let activeModal = null;
+      let lastFocus = null;
 
-function renderStatus() {
-  incidents.forEach((incident) => {
-    const item = document.createElement("li");
-    item.className = "status-list__item";
+      function closeModal(modal, { restoreFocus = true } = {}) {
+        if (!modal) return;
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        if (!document.querySelector(".modal.is-open")) {
+          body.classList.remove("has-modal");
+        }
+        if (restoreFocus && lastFocus) {
+          lastFocus.focus({ preventScroll: true });
+        }
+        if (activeModal === modal) {
+          activeModal = null;
+        }
+      }
 
-    const label = document.createElement("span");
-    label.className = "status-list__label";
-    label.textContent = incident.label;
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        if (activeModal && activeModal !== modal) {
+          closeModal(activeModal, { restoreFocus: false });
+        }
+        lastFocus = document.activeElement;
+        activeModal = modal;
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        body.classList.add("has-modal");
+        const focusTarget =
+          modal.querySelector("[data-autofocus]") ||
+          modal.querySelector("button, [href], input, textarea, select, [tabindex]:not([tabindex='-1'])");
+        const target = focusTarget || modal.querySelector(".modal-card");
+        if (target) {
+          target.focus({ preventScroll: true });
+        }
+      }
 
-    const badge = document.createElement("span");
-    badge.className = `status-list__badge status-list__badge--${incident.severity}`;
-    badge.textContent = incident.severity;
+      triggers.forEach(trigger => {
+        trigger.addEventListener("click", () => openModal(trigger.dataset.modalOpen));
+      });
 
-    item.append(label, badge);
-    statusList.append(item);
-  });
-}
+      document.querySelectorAll("[data-modal-close]").forEach(btn => {
+        btn.addEventListener("click", () => closeModal(btn.closest(".modal")));
+      });
 
-function animateSensors() {
-  const start = 210;
-  const end = 248;
-  const duration = 1200;
-  const startTime = performance.now();
+      modals.forEach(modal => {
+        modal.addEventListener("click", event => {
+          if (event.target === modal) {
+            closeModal(modal);
+          }
+        });
+      });
 
-  function tick(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const value = Math.floor(start + (end - start) * progress);
-    sensorCount.textContent = value;
-    if (progress < 1) requestAnimationFrame(tick);
-  }
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && activeModal) {
+          closeModal(activeModal);
+        }
+      });
+    })();
 
-  requestAnimationFrame(tick);
-}
-
-function handleFormSubmit(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const name = formData.get("name");
-  const severity = formData.get("severity");
-
-  ruleFeedback.textContent = `Regla “${name}” guardada con prioridad ${severity}.`;
-  event.target.reset();
-}
-
-function handleCTA(event) {
-  const action = event.target.dataset.action;
-  if (!action) return;
-  const message =
-    action === "demo"
-      ? "Un asesor se pondrá en contacto contigo en breve."
-      : "Desplegando recorrido interactivo...";
-  ruleFeedback.textContent = message;
-}
-
-renderStatus();
-animateSensors();
-ruleForm.addEventListener("submit", handleFormSubmit);
-document.querySelector(".hero__actions").addEventListener("click", handleCTA);
-yearEl.textContent = new Date().getFullYear();
+    (function () {
+      const form = document.getElementById("demo-form");
+      if (!form) return;
+      const success = form.querySelector(".form-success");
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        form.reset();
+        if (success) {
+          success.hidden = false;
+          success.focus({ preventScroll: true });
+        }
+      });
+    })();
