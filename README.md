@@ -109,6 +109,6 @@ Simplemente sube los archivos del repositorio a la carpeta pública de tu servid
 - Contacto: [hello@zerolock.io](mailto:hello@zerolock.io)
 - Soporte: [support@zerolock.cynetec.xyz](mailto:support@zerolock.cynetec.xyz)
 - GitHub: [zerolock-vanilla](https://github.com/zerolock-vanilla)
-- Desarrollado por: [Emerson Yrene Herrera]
+- Desarrollado por: Emerson Yrene Herrera
 
 &copy; 2025 ZeroLock. Todos los derechos reservados.
